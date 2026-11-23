@@ -18,7 +18,7 @@ The work ranges from early syntax exercises to tested simulations and comparison
 - [Systems simulation](#03_systems_simulation): small rule-based and resource-budget examples.
 - [Robotics](#04_robotics_simulator): differential-drive motion and two-link arm geometry.
 - [Optics](05_Optics/README.md): Fourier optics, beam alignment, and spectrometer calibration.
-- [Astronomy and Mars oxygen](06_Astronomy/README.md): exoplanet transits, an oxygen escape-speed comparison, and habitat storage and outage studies.
+- [Astronomy and Mars oxygen](06_Astronomy/README.md): exoplanet transits, an oxygen escape-speed comparison, and habitat storage, outage, and reserve studies.
 - [How to run and test](#how-to-run): commands and the repository test suite.
 
 ## Learning Timeline
@@ -130,6 +130,7 @@ See the [astronomy study guide](06_Astronomy/README.md) for the models, assumpti
 - `mars_oxygen_budget.py`: Compares simple oxygen-production rates against crew use and leakage in an enclosed Mars habitat.
 - `mars_oxygen_outage.py`: Shows how one day without oxygen production changes the same habitat inventory.
 - `mars_oxygen_outage_duration.py`: Compares remaining stored oxygen after one to four consecutive production-outage days.
+- `mars_oxygen_reserve.py`: Estimates the starting oxygen stock needed for a chosen reserve after an outage.
 
 ## Editor Setup
 
@@ -193,6 +194,7 @@ python3 06_Astronomy/mars_oxygen_escape.py
 python3 06_Astronomy/mars_oxygen_budget.py
 python3 06_Astronomy/mars_oxygen_outage.py
 python3 06_Astronomy/mars_oxygen_outage_duration.py
+python3 06_Astronomy/mars_oxygen_reserve.py
 ```
 
 Some files print numerical results in the terminal. Others create plots to make the physics or numerical method easier to see.

@@ -1,9 +1,10 @@
 # Introductory Astronomy and Mars Oxygen Studies
 
-This folder contains an exoplanet-transit study and four small Mars-oxygen
+This folder contains an exoplanet-transit study and five small Mars-oxygen
 steps. The transit model uses synthetic data and simple circle geometry.
 The Mars studies compare physical speed scales, track an illustrative
-enclosed-habitat oxygen inventory, and examine production outages.
+enclosed-habitat oxygen inventory, examine production outages, and estimate
+a starting stock for a chosen reserve target.
 They do not predict atmospheric lifetime or human survival.
 
 ## Exoplanet Transit: Scientific Question
@@ -63,6 +64,8 @@ as fractions of the stellar radius.
   outage; see the separate Day 3 section below.
 - `mars_oxygen_outage_duration.py`: Compares how much oxygen remains after
   outages of different lengths; see Day 4 below.
+- `mars_oxygen_reserve.py`: Hand-calculates a starting stock for a chosen
+  end-of-outage reserve and checks it with the simulator; see Day 5 below.
 - `../tests/test_exoplanet_transit.py`: Tests the physical geometry and input
   validation.
 - `../tests/test_transit_study.py`: Tests curve generation, parameter effects,
@@ -73,6 +76,8 @@ as fractions of the stellar radius.
   inputs, and plot output.
 - `../tests/test_mars_oxygen_outage.py`: Tests the Day 3 plot output.
 - `../tests/test_mars_oxygen_outage_duration.py`: Tests the Day 4 plot output.
+- `../tests/test_mars_oxygen_reserve.py`: Checks the reserve calculation against
+  the simulator and tests the Day 5 script and plot.
 
 ## Run the Study
 
@@ -86,6 +91,7 @@ python3 06_Astronomy/mars_oxygen_escape.py
 python3 06_Astronomy/mars_oxygen_budget.py
 python3 06_Astronomy/mars_oxygen_outage.py
 python3 06_Astronomy/mars_oxygen_outage_duration.py
+python3 06_Astronomy/mars_oxygen_reserve.py
 ```
 
 The plotting scripts save their figures in the root `assets/` directory.
@@ -118,7 +124,7 @@ shallower, rounded light curve.
 
 ## Tests
 
-Run the repository tests, including all six astronomy and Mars-oxygen test
+Run the repository tests, including all seven astronomy and Mars-oxygen test
 modules, from the root:
 
 ```bash
@@ -262,4 +268,34 @@ Run from the repository root:
 
 ```bash
 python3 06_Astronomy/mars_oxygen_outage_duration.py
+```
+
+## Mars Oxygen: Day 5 Starting Reserve Estimate
+
+Day 4 asked how much oxygen remains after a four-day production outage.
+Day 5 reverses the question: how much oxygen must be stored at the start to
+finish that outage with a *chosen* `2.0 kg` reserve? This is a bookkeeping
+target, **not** a safe breathing threshold.
+
+For the same example, the producer runs normally for seven 24-hour days
+before the outage begins on day 8. The daily gain before the outage is
+`4.5 - 4.1 = 0.4 kg`, and the daily loss during the outage is `4.1 kg`:
+
+```text
+end stock = starting stock + 7 × 0.4 kg - 4 × 4.1 kg
+required starting stock = 2.0 kg - 7 × 0.4 kg + 4 × 4.1 kg = 15.6 kg
+```
+
+The existing daily simulator independently gives `2.0 kg` at the end when
+starting from `15.6 kg`; starting from `15.5 kg` gives `1.9 kg`. Before the
+outage, the calculated case peaks at `18.4 kg`, below the `20 kg` storage
+capacity. The hand equation assumes stock never hits zero or tank capacity
+before the outage ends; outside that range, use the bounded simulation instead.
+
+![Starting oxygen stock and end-of-outage reserve](../assets/mars_oxygen_reserve.png)
+
+Run from the repository root:
+
+```bash
+python3 06_Astronomy/mars_oxygen_reserve.py
 ```
