@@ -132,6 +132,10 @@ See the [astronomy study guide](06_Astronomy/README.md) for the models, assumpti
 - `mars_oxygen_outage_duration.py`: Compares remaining stored oxygen after one to four consecutive production-outage days.
 - `mars_oxygen_reserve.py`: Estimates the starting oxygen stock needed for a chosen reserve after an outage.
 
+The [Mars oxygen wrap-up](06_Astronomy/README.md#mars-oxygen-day-6-wrap-up)
+summarizes the five experiments and explains why atmospheric escape and habitat
+oxygen storage are separate questions.
+
 ## Editor Setup
 
 The workspace settings in `.vscode/settings.json` tell Pylance where the

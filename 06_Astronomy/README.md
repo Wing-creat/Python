@@ -299,3 +299,29 @@ Run from the repository root:
 ```bash
 python3 06_Astronomy/mars_oxygen_reserve.py
 ```
+
+## Mars Oxygen: Day 6 Wrap-Up
+
+The project started with a question about Mars itself, then shifted to a
+smaller engineering question about oxygen stored inside a habitat. The models
+answer different questions: Day 1 compares speeds, while Days 2–5 track mass
+in a tank under fixed teaching assumptions.
+
+| Day | Question | Result in the example |
+| --- | --- | --- |
+| 1 | How do the two speed scales compare? | Mars's ideal surface escape speed is `5.03 km/s`; the oxygen RMS speed at an assumed `200 K` is `0.395 km/s`. |
+| 2 | What production rate balances daily losses? | Crew use plus leakage totals `4.1 kg/day`. |
+| 3 | What changes when production stops for one day? | A day-8 outage leaves `4.5 kg` less than normal at the end of the 20-day example. |
+| 4 | What if the outage lasts longer? | Starting the outage on day 8 leaves `0.5 kg` after three days and reaches zero on the fourth. |
+| 5 | What starting inventory meets a chosen end reserve? | Both the hand calculation and daily simulation give `2.0 kg` after four outage days when starting day 0 with `15.6 kg`. |
+
+The speed comparison does not give an atmospheric escape rate or lifetime.
+The habitat model does not track breathable cabin air: it counts stored
+oxygen, not oxygen partial pressure or CO2 buildup. A zero inventory can
+indicate that the modeled demand was not met; a positive inventory does not
+establish crew safety. The `2.0 kg` reserve is a teaching target, not a
+life-support requirement.
+
+The main modeling lesson was to use a simple mass balance, change one
+assumption at a time, then check the result against a hand calculation where
+the assumptions allow it. No additional simulation is needed for this wrap-up.
